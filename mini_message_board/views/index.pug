@@ -1,0 +1,16 @@
+extends layout
+
+
+block content
+  h1= title
+  each message in messages 
+    h3= message.user
+    p= message.text
+    p= message.added
+
+  br
+  br
+  p
+      | If you want to leave a message, click 
+      a(href='/new') 
+        b here!
