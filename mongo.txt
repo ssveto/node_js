@@ -1,3 +1,6 @@
 mongosh "mongodb+srv://sveto.kdg9zvf.mongodb.net/" --apiVersion 1 --username letosve9
 
 8296hIkmqoH2kO6J
+
+
+mongodb+srv://letosve9:8296hIkmqoH2kO6J@sveto.kdg9zvf.mongodb.net/local_library?retryWrites=true&w=majority&appName=sveto
