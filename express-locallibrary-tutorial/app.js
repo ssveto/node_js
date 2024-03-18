@@ -3,21 +3,31 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const helmet = require('helmet');
 
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog");
+const compression = require("compression");
 
 
 
 const app = express();
 
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowsMs: 1 * 60 * 1000,
+  max: 40,
+});
+
+app.use(limiter);
+
 // Mongoose
 const mongoose = require('mongoose')
 mongoose.set("strictQuery", false);
-const mongoDB = 'mongodb+srv://letosve9:8296hIkmqoH2kO6J@sveto.kdg9zvf.mongodb.net/local_library?retryWrites=true&w=majority&appName=sveto';
-
+const dev_db_url = 'mongodb+srv://letosve9:8296hIkmqoH2kO6J@sveto.kdg9zvf.mongodb.net/local_library?retryWrites=true&w=majority&appName=sveto';
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
 main().catch((err) => console.log(err))
 async function main() {
   await mongoose.connect(mongoDB)
@@ -29,6 +39,7 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(compression());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
