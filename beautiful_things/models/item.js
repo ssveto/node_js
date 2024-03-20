@@ -18,11 +18,11 @@ ItemSchema.virtual("url").get(function () {
 });
 
 ItemSchema.virtual("date_created_formatted").get(function() {
-    return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
+    return DateTime.fromJSDate(this.date_created).toLocaleString(DateTime.DATE_MED);
 });
 
 ItemSchema.virtual("date_created_yyyy_mm_dd").get(function () {
-    return DateTime.fromJSDate(this.due_back).toISODate(); // format 'YYYY-MM-DD'
+    return DateTime.fromJSDate(this.date_created).toISODate(); // format 'YYYY-MM-DD'
 });
 
 module.exports = mongoose.model("Item", ItemSchema);
