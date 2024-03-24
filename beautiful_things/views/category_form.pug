@@ -1,0 +1,37 @@
+extends layout 
+
+
+block content
+    .container.mx-auto 
+        .flex.flex-col.h-screen
+            .flex.justify-between.grow-0.mt-4
+                ul.flex.list-none
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
+                    each category in categories 
+                        li.mr-6
+                            a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
+                ul.flex.list-none
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
+            .flex.flex-col.justify-center.items-center.w-full.mt-10
+                h1.mt-6.text-2xl.font-bold #{title}
+                form.flex.flex-col.grow.justify-center.items-center(method='POST' class="w-4/5")
+                    .flex.items-center.border-b.border-teal-500.py-2.mt-10(class="w-1/5")
+                        input.appearance-none.bg-transparent.border-none.w-full.text-gray-700.mr-3.py-1.px-2.leading-tight.text-center(class='focus:outline-none' type='text' name="name" placeholder='Name' required aria-label='title of item' value=(undefined===category ? '' : category.name))
+                    .flex.items-center.border-b.border-teal-500.py-2.mt-10(class="w-3/5")
+                        input.appearance-none.bg-transparent.border-none.w-full.text-gray-700.mr-3.py-1.px-2.leading-tight.text-center(class='focus:outline-none' type='text' name="description" placeholder='Description' required aria-label='description of item' value=(undefined===category ? '' : category.description))
+                    .flex.items-center.border-b.border-teal-500.py-2.mt-10(class="w-1/5")
+                        input.appearance-none.bg-transparent.border-none.w-full.text-gray-700.mr-3.py-1.px-2.leading-tight.text-center(class='focus:outline-none' type='text' placeholder='Your Name' name="user_name" required aria-label='created by' value=(undefined===category ? '' : category.created_by))
+                    .grid.grid-cols-2.justify-items-center.items-center.gap-8.w-full
+                        .flex.items-center.border-b.border-teal-500.py-2.mt-10(class="w-3/5")
+                            input.appearance-none.bg-transparent.border-none.w-full.text-gray-700.mr-3.py-1.px-2.leading-tight.text-center(class='focus:outline-none' name="url_search" type='text' placeholder='Link for more information' required aria-label='title of item' value=(undefined===category ? '' : category.url_search))
+                        .flex.items-center.border-b.border-teal-500.py-2.mt-10(class="w-3/5")
+                            input.appearance-none.bg-transparent.border-none.w-full.text-gray-700.mr-3.py-1.px-2.leading-tight.text-center(class='focus:outline-none' name="url_picture" type='text' placeholder='Link to a picture' required aria-label='title of item' value=(undefined===category ? '' : category.url_picture))
+                    button.bg-blue-500.text-white.font-bold.py-2.px-4.rounded.mb-8.mt-14(class='hover:bg-blue-700' type='submit') Submit
+                if errors
+                    ul
+                        for error in errors
+                            li!= error.msg

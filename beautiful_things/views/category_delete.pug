@@ -1,0 +1,41 @@
+extends layout 
+
+
+block content
+    .container.mx-auto 
+        .flex.flex-col.h-screen
+            .flex.justify-between.grow-0.mt-4
+                ul.flex.list-none
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
+                    each category in categories 
+                        li.mr-6
+                            a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
+                ul.flex.list-none
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
+                    li.mr-6
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
+            .flex.flex-col.grow.justify-center.items-center.w-full
+                if items.length 
+                    h1.mt-6.text-2xl.font-bold #{title}
+                    p.mt-4.text-red-500.text-lg You have to delete all the items in this category before deleting it
+                    img.object-cover.mt-4.h-100.w-100(src=category.url_picture) 
+                    p.mt-4.text-lg #{category.description}
+                    a.text-blue-500.mt-2(class='hover:text-blue-800' href=category.url_search target="_blank") Read more
+                    ul.flex.gap-16.mt-6
+                        a.text-blue-500(class='hover:text-blue-800' href=category.url+"/update") Update the Category 
+                        a.text-blue-500(class='hover:text-blue-800' href=category.url+"/delete") Delete the Category
+                    ul.grid.grid-cols-3.gap-4.mt-6
+                        each item in items
+                            li.flex.flex-col.items-center.mb-20
+                                p.mb-4.text-slate-800 #{item.title}
+                                a(href=item.url_search target="_blank")
+                                    img.object-cover.h-48.w-96(src=item.url_picture)
+                                a.mt-4.text-blue-500(class='hover:text-blue-800' href=item.url) Read More
+                else        
+                    p.text-gray-800.text-size-xl Are you sure you want to delete this category?
+
+                    form(method='POST')
+                        input#categoryid(type='hidden', name='categoryid', value=category._id )
+                        button.bg-blue-500.text-white.font-bold.py-2.px-4.rounded.mb-8.mt-8(type='submit') Delete

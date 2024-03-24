@@ -17,13 +17,8 @@ block content
                     li.mr-6
                         a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
             .flex.flex-col.grow.justify-center.items-center
-                h1.mt-6.text-2xl.font-bold #{title}
-                img.object-fit.mt-4.max-h-90.max-w-90(src=item.url_picture) 
-                p.mt-4.text-lg.max-w-90 #{item.description}
-                a.text-blue-500.mt-2.mb-10(class='hover:text-blue-800' href=item.url_search target="_blank") Read more
-                ul.flex.gap-16
-                    a.text-blue-500(class='hover:text-blue-800' href=item.url+"/update") Update the Item 
-                    a.text-blue-500(class='hover:text-blue-800' href=item.url+"/delete") Delete the Item 
-                .w-full.flex.justify-end.items-end.mb-6
-                    p.mr-6 Created by #{item.created_by}
-                    p Date: #{item.date_created_formatted}
+                p.text-gray-800.text-size-xl Do you really want to delete this Item?
+
+                form(method='POST')
+                    input#itemid(type='hidden', name='itemid', value=item._id )
+                    button.bg-blue-500.text-white.font-bold.py-2.px-4.rounded.mb-8.mt-8(type='submit') Delete

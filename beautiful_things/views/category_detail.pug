@@ -13,7 +13,7 @@ block content
                             a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
                 ul.flex.list-none
                     li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='#') Create New Category
+                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
                     li.mr-6
                         a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
             .flex.flex-col.grow.justify-center.items-center
@@ -21,6 +21,9 @@ block content
                 img.object-cover.mt-4.h-100.w-100(src=category.url_picture) 
                 p.mt-4.text-lg #{category.description}
                 a.text-blue-500.mt-2(class='hover:text-blue-800' href=category.url_search target="_blank") Read more
+                ul.flex.gap-16.mt-6
+                    a.text-blue-500(class='hover:text-blue-800' href=category.url+"/update") Update the Category 
+                    a.text-blue-500(class='hover:text-blue-800' href=category.url+"/delete") Delete the Category  
                 
                 ul.grid.grid-cols-3.gap-4.mt-6
                     each item in items
