@@ -2,28 +2,27 @@ extends layout
 
 
 block content
-    .container.mx-auto 
-        .flex.flex-col.h-screen
-            .flex.justify-between.grow-0.mt-4
-                ul.flex.list-none
+    .container.mx-auto.flex.flex-col 
+        .flex.justify-between.grow-0.mt-4
+            ul.flex.list-none
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
+                each category in categories 
                     li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
-                    each category in categories 
-                        li.mr-6
-                            a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
-                ul.flex.list-none
-                    li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
-                    li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
-            .flex.flex-col.grow.justify-center.items-center
-                h1.mt-6.text-2xl.font-bold #{title}
-                img.object-fit.mt-4.max-h-90.max-w-90(src=item.url_picture) 
-                p.mt-4.text-lg.max-w-90 #{item.description}
-                a.text-blue-500.mt-2.mb-10(class='hover:text-blue-800' href=item.url_search target="_blank") Read more
-                ul.flex.gap-16
-                    a.text-blue-500(class='hover:text-blue-800' href=item.url+"/update") Update the Item 
-                    a.text-blue-500(class='hover:text-blue-800' href=item.url+"/delete") Delete the Item 
-                .w-full.flex.justify-end.items-end.mb-6
-                    p.mr-6 Created by #{item.created_by}
-                    p Date: #{item.date_created_formatted}
+                        a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
+            ul.flex.list-none
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
+        .flex.flex-col.grow.justify-center.items-center.h-lvh
+            h1.mt-6.text-2xl.font-bold #{title}
+            img.object-fit.mt-4.bg-cover(class="size-3/6" src=item.url_picture) 
+            p.mt-4.text-lg.max-w-90 #{item.description}
+            a.text-blue-500.mt-2.mb-10(class='hover:text-blue-800' href=item.url_search target="_blank") Read more
+            ul.flex.gap-16
+                a.text-blue-500(class='hover:text-blue-800' href=item.url+"/update") Update the Item 
+                a.text-blue-500(class='hover:text-blue-800' href=item.url+"/delete") Delete the Item 
+            .w-full.flex.justify-end.items-end.mb-6
+                p.mr-6 Created by #{item.created_by}
+                p Date: #{item.date_created_formatted}

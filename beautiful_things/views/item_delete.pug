@@ -2,23 +2,22 @@ extends layout
 
 
 block content
-    .container.mx-auto 
-        .flex.flex-col.h-screen
-            .flex.justify-between.grow-0.mt-4
-                ul.flex.list-none
+    .container.mx-auto.flex.flex-col.h-lvh 
+        .flex.justify-between.grow-0.mt-4
+            ul.flex.list-none
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
+                each category in categories 
                     li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
-                    each category in categories 
-                        li.mr-6
-                            a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
-                ul.flex.list-none
-                    li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
-                    li.mr-6
-                        a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
-            .flex.flex-col.grow.justify-center.items-center
-                p.text-gray-800.text-size-xl Do you really want to delete this Item?
+                        a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
+            ul.flex.list-none
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
+                li.mr-6
+                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
+        .flex.flex-col.grow.justify-center.items-center
+            p.text-gray-800.text-size-xl Do you really want to delete this Item?
 
-                form(method='POST')
-                    input#itemid(type='hidden', name='itemid', value=item._id )
-                    button.bg-blue-500.text-white.font-bold.py-2.px-4.rounded.mb-8.mt-8(type='submit') Delete
+            form(method='POST')
+                input#itemid(type='hidden', name='itemid', value=item._id )
+                button.bg-blue-500.text-white.font-bold.py-2.px-4.rounded.mb-8.mt-8(type='submit') Delete

@@ -1,25 +1,24 @@
 extends layout
 
 block content
-  .container.mx-auto 
-    .flex.flex-col.h-screen
-        .flex.justify-between.grow-0.mt-4
-            ul.flex.list-none
-                li.mr-6
-                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
-                each category in categories 
-                  li.mr-6
-                    a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
-            ul.flex.list-none
-                li.mr-6
-                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
-                li.mr-6
-                    a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
-        .flex.flex-col.grow.justify-center.items-center
-          h1.text-2xl.font-bold #{title}
-          p.mt-4.text-black-500 Welcome to a website dedicated to beautiful things. You can add categories, or things/items you think deserve to be on this site.
-          p.mt-6.text-black-600 So far we have this many categories and items in total: 
-            ul.flex.gap-8 
-              li #[strong Categories: ] !{categories_count}
-              li #[strong Items: ] !{items_count}
+  .container.mx-auto.w-full.h-lvh.flex.flex-col
+    .flex.justify-between.grow-0.mt-4
+        ul.flex.list-none
+            li.mr-6
+                a.text-blue-500(class='hover:text-blue-800' href='/catalog/') Home
+            each category in categories 
+              li.mr-6
+                a.text-blue-500(class='hover:text-blue-800' href=category.url) #{category.name}
+        ul.flex.list-none
+            li.mr-6
+                a.text-blue-500(class='hover:text-blue-800' href='/catalog/category/create') Create New Category
+            li.mr-6
+                a.text-blue-500(class='hover:text-blue-800' href='/catalog/item/create') Create New Item
+    .flex.flex-col.grow.justify-center.items-center
+      h1.text-2xl.font-bold #{title}
+      p.mt-4.text-black-500 Welcome to a website dedicated to beautiful things. You can add categories, or things/items you think deserve to be on this site.
+      p.mt-6.text-black-600 So far we have this many categories and items in total: 
+        ul.flex.gap-8 
+          li #[strong Categories: ] !{categories_count}
+          li #[strong Items: ] !{items_count}
     
