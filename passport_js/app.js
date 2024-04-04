@@ -5,9 +5,12 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+require('dotenv').config();
 
-const mongoDb = 'mongodb+srv://letosve9:8296hIkmqoH2kO6J@sveto.kdg9zvf.mongodb.net/passport_js?retryWrites=true&w=majority&appName=sveto';
+
+
+const mongoDb = process.env.MONGODB_URL;
 mongoose.connect(mongoDb);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
@@ -20,11 +23,11 @@ const User = mongoose.model(
     })
 );
 
-const app = express();
+const app = express();  
 app.set("views", __dirname);
 app.set("view engine", "ejs");
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.SECRET_KEY, resave: false, saveUninitialized: true }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
