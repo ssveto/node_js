@@ -3,9 +3,25 @@ head
     meta(charset='UTF-8')
     title
 h1 Sign Up
-form(action='' method='POST')
-    label(for='username') Username
-    input(name='username' placeholder='username' type='text')
-    label(for='password') Password
-    input(name='password' type='password')
+form(method='POST')
+    label(for='first_name') First Name: 
+    input(name='first_name' placeholder='First Name' type='text' required value=(undefined===member ? '' : member.first_name))
+    br
+    label(for='family_name') Family Name: 
+    input(name='family_name' placeholder='Family Name' type='text' required value=(undefined===member ? '' : member.family_name))
+    br
+    label(for='email') Email: 
+    input(name='email' placeholder='email' type='text' required value=(undefined===member ? '' : member.email))
+    br
+    label(for='password') Password: 
+    input(name='password' type='password' required )
+    br
+    label(for='confirm-password') Confirm password: 
+    input(name='confirm-password' type='password' required )
+    br
     button Sign Up
+
+if errors
+    ul
+        for error in errors
+            li!= error.msg

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const MemberSchema = new Schema({
     first_name: { type: String, required: true, maxLength: 100 },
     family_name: { type: String, required: true, maxLength: 100 },
-    username: { type: String, required: true},
+    email: { type: String, required: true},
     password: { type: String, required: true },
     membership_status: { type: String, required: true, minLength: 3, maxLength: 20 }
 });
