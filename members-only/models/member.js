@@ -7,7 +7,7 @@ const MemberSchema = new Schema({
     family_name: { type: String, required: true, maxLength: 100 },
     email: { type: String, required: true},
     password: { type: String, required: true },
-    membership_status: { type: String, required: true, minLength: 3, maxLength: 20 }
+    membership_status: { type: String, required: true, default: "azubi", minLength: 3, maxLength: 20 }
 });
 
 MemberSchema.virtual("name").get(function () {

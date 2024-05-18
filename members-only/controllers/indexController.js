@@ -4,7 +4,11 @@ const bcrypt = require("bcryptjs");
 const Member = require("../models/member");
 
 
-exports.index = function(req, res, next) {
+exports.index_get = function(req, res, next) {
+    res.render('index', { title: 'Express' });
+};
+
+exports.index_post = function(req, res, next) {
     res.render('index', { title: 'Express' });
 };
 
@@ -27,18 +31,19 @@ exports.sign_up_post = [
         .withMessage("Family name has non-alphanumeric characters."),
     body("password")
         .trim()
-        .isLength({ min: 5 })
+        .isLength({ min: 5 })   
         .escape()
         .withMessage("Password must be given."),
     body('confirm_password')
         .trim()
         .isLength({ min: 5 })
         .escape()
-        .withMessage("Password is not same.")
         .custom((value, { req }) => {
-            return value === req.body.password;
-        }),
-    
+            if (value !== req.body.password) {
+                throw new Error("Confirmation password doesn't match");
+            }
+            return value;
+    }),
     body("email")
         .isEmail()
         .withMessage("Email not correct"),
@@ -53,7 +58,7 @@ exports.sign_up_post = [
                     family_name: req.body.family_name,
                     email: req.body.email,
                     password: hashedPassword
-                });
+                })
 
                 if (!errors.isEmpty()) {
                     // There are errors. Render form again with sanitized values/errors messages.
@@ -73,4 +78,9 @@ exports.sign_up_post = [
         })
 
     })
-]
+];
+
+exports.login_get = (req, res) => res.render('login-form');
+
+exports.login_post = (req, res) => res.render('login-form');
+

@@ -3,3 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  p Are you a part of our VIP club? If yes, don't wait, type out the secret pass and join.
+  label(for='secret_pass') Secret password: 
+    input(name='secret_pass' placeholder='secret_pass' type='text')

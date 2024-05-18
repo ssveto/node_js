@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1 Login
+    form(method='POST')
+        label(for='first_name') First Name: 
+        input(name='first_name' placeholder='First Name' type='text' required value=(undefined===member ? '' : member.first_name))
+        br
+        label(for='family_name') Family Name: 
+        input(name='family_name' placeholder='Family Name' type='text' required value=(undefined===member ? '' : member.family_name))
+        br
+        button Sign Up
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
